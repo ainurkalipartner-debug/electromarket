@@ -1,0 +1,23 @@
+@use '../../styles/tokens' as *;
+
+.button {
+  position: fixed;
+  bottom: $space-lg;
+  right: $space-lg;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: $shadow-lg;
+  z-index: 500;
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scale(1.06);
+  }
+}

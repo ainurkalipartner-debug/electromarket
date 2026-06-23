@@ -1,0 +1,55 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.wrap {
+  @include container;
+  padding-top: $space-lg;
+  padding-bottom: $space-3xl;
+}
+
+.title {
+  margin-bottom: $space-lg;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-xl;
+
+  @include laptop-up {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+.infoCard {
+  border: 1px solid $gray-border;
+  border-radius: $radius-md;
+  padding: $space-lg;
+  margin-bottom: $space-md;
+}
+
+.infoRow {
+  display: flex;
+  gap: $space-sm;
+  font-size: 14px;
+  margin-bottom: $space-sm;
+}
+
+.infoLabel {
+  font-size: 12px;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.map {
+  width: 100%;
+  height: 320px;
+  border: none;
+  border-radius: $radius-md;
+}
+
+.formCard {
+  border: 1px solid $gray-border;
+  border-radius: $radius-md;
+}

@@ -1,0 +1,21 @@
+@use '../../styles/tokens' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid $navy;
+  color: $navy;
+  background: rgba(11, 55, 99, 0.06);
+  white-space: nowrap;
+}
+
+.amber {
+  border-color: $amber;
+  color: $navy-darkest;
+  background: rgba(255, 196, 0, 0.18);
+}

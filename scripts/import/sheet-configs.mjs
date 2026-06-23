@@ -1,0 +1,146 @@
+// One entry per sheet that contributes to the catalog. "Проекты по опорам" and
+// "ПРОЕКТЫ" are intentionally absent — they are internal BOM/compatibility
+// engineering tables, not retail SKUs.
+export const SHEET_CONFIGS = [
+  {
+    sheetName: 'ЭЛЕКТРОТЕХ',
+    headerMode: 'fillColor',
+    nameCol: 'A',
+    priceCols: ['B', 'C'],
+    sectionRouter: 'electrotech',
+    defaultCategory: 'izolyatory-i-vysokovoltnaya-armatura',
+  },
+  {
+    sheetName: 'П. АС',
+    headerMode: 'fillColor',
+    nameCol: 'A',
+    priceCols: ['B', 'C'],
+    defaultCategory: 'kabelnaya-armatura',
+    fixedSubcategoryPrefix: 'Линейно-подвесная арматура для ЛЭП',
+  },
+  {
+    sheetName: 'П.СИП',
+    headerMode: 'fillColor',
+    nameCol: 'A',
+    priceCols: ['B', 'C'],
+    extraCols: { enstoAnalog: 'D', niledAnalog: 'E' },
+    defaultCategory: 'kabelnaya-armatura',
+    fixedSubcategoryPrefix: 'Арматура для СИП',
+  },
+  {
+    sheetName: 'АВТОМАТИКА',
+    headerMode: 'fillColor',
+    nameCol: 'A',
+    priceCols: ['B', 'C'],
+    defaultCategory: 'avtomatika-i-zashchita',
+  },
+  {
+    sheetName: 'ТРАВЕРСЫ',
+    headerMode: 'columnShift',
+    indexCol: 'A',
+    nameCol: 'B',
+    priceCols: ['C', 'D'],
+    extraCols: { weight: 'E', unit: 'F', series: 'G' },
+    defaultCategory: 'kabelenesushchie-sistemy',
+  },
+  {
+    sheetName: 'ЭНСТО',
+    headerMode: 'flat',
+    nameCol: 'B',
+    codeCol: 'A',
+    priceCols: ['D'],
+    extraCols: { unit: 'C' },
+    defaultCategory: 'kabelnaya-armatura',
+    brandOverride: 'ensto',
+    fixedSubcategoryPrefix: 'Арматура и комплектующие ENSTO',
+  },
+  {
+    sheetName: 'ПТИЦЕЗАЩИТА',
+    headerMode: 'fillColor',
+    nameCol: 'A',
+    priceCols: ['B', 'C'],
+    extraCols: { voltage: 'E', insulatorType: 'F', mount: 'G', description: 'H', kit: 'I' },
+    defaultCategory: 'ptitsezashchitnye-ustroystva',
+  },
+  {
+    sheetName: 'КАБ. МУФТЫ',
+    headerMode: 'fillColor',
+    nameCol: 'A',
+    priceCols: ['B', 'C'],
+    defaultCategory: 'kabelnaya-armatura',
+    fixedSubcategoryPrefix: 'Кабельные муфты',
+  },
+  {
+    sheetName: 'УКМ',
+    headerMode: 'fillColor',
+    nameCol: 'A',
+    priceCols: ['B'],
+    defaultCategory: 'kondensatornye-ustanovki',
+    brandOverride: 'involt-production',
+  },
+  {
+    sheetName: 'ТМ, ТМГ',
+    headerMode: 'fillColor',
+    nameCol: 'A',
+    priceCols: ['B'],
+    defaultCategory: 'transformatory',
+    skipIf: (name) => /^бутылка/i.test(name),
+    categoryOverride: (name) => (/масло/i.test(name) ? 'raskhodnye-materialy' : null),
+  },
+  {
+    sheetName: 'САЙМАН',
+    headerMode: 'columnShift',
+    indexCol: 'A',
+    nameCol: 'C',
+    codeCol: 'B',
+    priceCols: ['D', 'E'],
+    defaultCategory: 'pribory-ucheta',
+  },
+];
+
+// ЩИТЫ 0,4 is free-text, not a price table — these ~7 entries are the literal
+// product-line names listed in that sheet, hand-curated once.
+export const MANUAL_ENTRIES = [
+  {
+    sourceSheet: 'ЩИТЫ 0,4',
+    name: 'Вводно-распределительное устройство (ВРУ)',
+    categorySlug: 'shchitovoe-oborudovanie',
+    description: 'Собственное производство. Изготавливается под индивидуальные параметры объекта.',
+  },
+  {
+    sourceSheet: 'ЩИТЫ 0,4',
+    name: 'Распределительные силовые шкафы ШРС, ШР',
+    categorySlug: 'shchitovoe-oborudovanie',
+    description: 'Собственное производство. Изготавливается под индивидуальные параметры объекта.',
+  },
+  {
+    sourceSheet: 'ЩИТЫ 0,4',
+    name: 'Щиты этажные ЩЭ',
+    categorySlug: 'shchitovoe-oborudovanie',
+    description: 'Собственное производство. Изготавливается под индивидуальные параметры объекта.',
+  },
+  {
+    sourceSheet: 'ЩИТЫ 0,4',
+    name: 'Щиты осветительные ОП, ОЩ, ОЩВ, УОЩВ, ЯОУ',
+    categorySlug: 'shchitovoe-oborudovanie',
+    description: 'Собственное производство. Изготавливается под индивидуальные параметры объекта.',
+  },
+  {
+    sourceSheet: 'ЩИТЫ 0,4',
+    name: 'Шкафы учёта ШУ',
+    categorySlug: 'shchitovoe-oborudovanie',
+    description: 'Собственное производство. Изготавливается под индивидуальные параметры объекта.',
+  },
+  {
+    sourceSheet: 'ЩИТЫ 0,4',
+    name: 'Щиты автоматического переключения на резерв ЩАП, АВР',
+    categorySlug: 'shchitovoe-oborudovanie',
+    description: 'Собственное производство. Изготавливается под индивидуальные параметры объекта.',
+  },
+  {
+    sourceSheet: 'ЩИТЫ 0,4',
+    name: 'Шкаф уличного освещения ШУО',
+    categorySlug: 'shchitovoe-oborudovanie',
+    description: 'Собственное производство. Изготавливается под индивидуальные параметры объекта.',
+  },
+];

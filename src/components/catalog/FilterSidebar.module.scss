@@ -1,0 +1,58 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.resetBtn {
+  @include button-reset;
+}
+
+.optionBtn {
+  @include button-reset;
+  width: 100%;
+  text-align: left;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.group {
+  border-bottom: 1px solid $gray-border;
+  padding-bottom: $space-md;
+}
+
+.groupTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: $navy-darkest;
+  margin-bottom: $space-sm;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 0;
+  font-size: 13px;
+  color: $text-secondary;
+}
+
+.optionActive {
+  color: $navy-darkest;
+  font-weight: 700;
+}
+
+.count {
+  color: $text-muted;
+  font-size: 12px;
+}
+
+.reset {
+  font-size: 13px;
+  font-weight: 600;
+  color: $navy;
+  align-self: flex-start;
+}

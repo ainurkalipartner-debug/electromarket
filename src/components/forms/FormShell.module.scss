@@ -1,0 +1,43 @@
+@use '../../styles/tokens' as *;
+
+.form {
+  padding: $space-xl;
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: $space-sm;
+}
+
+.description {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-bottom: $space-lg;
+}
+
+.success {
+  padding: $space-xl;
+  text-align: center;
+}
+
+.successIcon {
+  font-size: 40px;
+  margin-bottom: $space-sm;
+}
+
+.success h3 {
+  font-size: 20px;
+  margin-bottom: $space-sm;
+}
+
+.success p {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-bottom: $space-lg;
+}
+
+.successActions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}

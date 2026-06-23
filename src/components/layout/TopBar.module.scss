@@ -1,0 +1,53 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.bar {
+  background: $navy-darkest;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+}
+
+.inner {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+  padding-top: $space-sm;
+  padding-bottom: $space-sm;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+}
+
+.right {
+  display: none;
+
+  @include laptop-up {
+    display: flex;
+  }
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item a {
+  color: inherit;
+
+  &:hover {
+    color: $amber;
+  }
+}
+
+.icon {
+  font-size: 14px;
+}

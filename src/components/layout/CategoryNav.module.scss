@@ -1,0 +1,51 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.nav {
+  background: $navy-darkest;
+}
+
+.inner {
+  @include container;
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.allLink {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: $amber;
+  color: $navy-darkest;
+  font-weight: 700;
+  font-size: 14px;
+  padding: $space-sm $space-md;
+  white-space: nowrap;
+}
+
+.link {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.82);
+  padding: $space-sm 0;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.linkActive {
+  color: $white;
+  border-bottom-color: $amber;
+}

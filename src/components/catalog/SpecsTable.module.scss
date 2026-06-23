@@ -1,0 +1,25 @@
+@use '../../styles/tokens' as *;
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table tr {
+  border-bottom: 1px solid $gray-border;
+}
+
+.table td {
+  padding: 10px 0;
+}
+
+.label {
+  color: $text-secondary;
+  width: 45%;
+}
+
+.value {
+  color: $navy-darkest;
+  font-weight: 600;
+}

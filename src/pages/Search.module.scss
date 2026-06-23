@@ -1,0 +1,41 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.wrap {
+  @include container;
+  padding-top: $space-lg;
+  padding-bottom: $space-3xl;
+}
+
+.searchRow {
+  max-width: 560px;
+  margin-bottom: $space-lg;
+}
+
+.resultCount {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-bottom: $space-md;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-md;
+
+  @include tablet-up {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include desktop-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: $space-3xl $space-md;
+  background: $gray-light;
+  border-radius: $radius-md;
+  color: $text-secondary;
+}

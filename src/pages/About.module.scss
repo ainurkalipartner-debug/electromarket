@@ -1,0 +1,58 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.banner {
+  background: linear-gradient(135deg, $navy-darkest, $navy);
+  padding-top: $space-2xl;
+  padding-bottom: $space-2xl;
+}
+
+.bannerInner {
+  @include container;
+}
+
+.bannerTitle {
+  color: $white;
+  font-size: 30px;
+}
+
+.section {
+  @include container;
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+  max-width: 860px;
+}
+
+.heading {
+  font-size: 20px;
+  margin-bottom: $space-sm;
+}
+
+.text {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.7;
+  margin-bottom: $space-md;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-md;
+  margin-top: $space-md;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.item {
+  display: flex;
+  gap: $space-sm;
+  padding: $space-md;
+  background: $gray-light;
+  border-radius: $radius-md;
+  font-size: 13px;
+  color: $navy-darkest;
+  font-weight: 600;
+}

@@ -1,0 +1,41 @@
+@use '../../styles/tokens' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 30, 56, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-md;
+  z-index: 1000;
+}
+
+.box {
+  background: $white;
+  border-radius: $radius-md;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: $shadow-lg;
+}
+
+.close {
+  position: absolute;
+  top: $space-md;
+  right: $space-md;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: $gray-light;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1;
+
+  &:hover {
+    background: $gray-border;
+  }
+}

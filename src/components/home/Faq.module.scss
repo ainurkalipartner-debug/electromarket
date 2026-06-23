@@ -1,0 +1,41 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include container;
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+  max-width: 800px;
+}
+
+.item {
+  border-bottom: 1px solid $gray-border;
+}
+
+.question {
+  @include button-reset;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-md 0;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  color: $navy-darkest;
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-left: $space-md;
+  color: $amber;
+  font-size: 18px;
+}
+
+.answer {
+  padding-bottom: $space-md;
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.6;
+  max-width: 640px;
+}

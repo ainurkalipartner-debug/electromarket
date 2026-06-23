@@ -1,0 +1,46 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.wrap {
+  @include container;
+  padding-top: $space-lg;
+  padding-bottom: $space-3xl;
+  max-width: 720px;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: $space-lg;
+}
+
+.tab {
+  @include button-reset;
+  padding: 10px 16px;
+  border-radius: $radius-sm;
+  font-size: 13px;
+  font-weight: 700;
+  background: $gray-light;
+  color: $text-secondary;
+}
+
+.tabActive {
+  background: $navy-darkest;
+  color: $white;
+}
+
+.card {
+  background: $white;
+  border: 1px solid $gray-border;
+  border-radius: $radius-md;
+}
+
+.quoteListNote {
+  font-size: 13px;
+  color: $text-secondary;
+  background: $gray-light;
+  border-radius: $radius-sm;
+  padding: $space-md;
+  margin-bottom: $space-lg;
+}

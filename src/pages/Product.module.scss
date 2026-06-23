@@ -1,0 +1,114 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.wrap {
+  @include container;
+  padding-top: $space-md;
+  padding-bottom: $space-3xl;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-xl;
+
+  @include laptop-up {
+    grid-template-columns: minmax(280px, 360px) 1fr;
+  }
+}
+
+.imageBox {
+  background: $gray-light;
+  border-radius: $radius-md;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: $space-xl;
+}
+
+.placeholder {
+  font-size: 64px;
+  opacity: 0.3;
+}
+
+.sku {
+  font-size: 13px;
+  color: $text-secondary;
+  margin-bottom: $space-sm;
+}
+
+.title {
+  font-size: 26px;
+  margin-bottom: $space-md;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: $space-md;
+}
+
+.statusPill {
+  background: $navy-darkest;
+  color: $white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.voltage {
+  background: $gray-light;
+  color: $navy-darkest;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.leadTime {
+  font-size: 13px;
+  color: $text-secondary;
+  background: $gray-light;
+  border-radius: $radius-sm;
+  padding: $space-sm $space-md;
+  margin-bottom: $space-lg;
+  display: inline-block;
+}
+
+.description {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.6;
+  margin-bottom: $space-lg;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-sm;
+  margin-bottom: $space-xl;
+
+  @include desktop-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  a,
+  button {
+    white-space: normal;
+  }
+}
+
+.specsHeading {
+  font-size: 17px;
+  margin-bottom: $space-md;
+}

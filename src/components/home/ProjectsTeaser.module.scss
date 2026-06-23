@@ -1,0 +1,77 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  background: $navy-darkest;
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+}
+
+.inner {
+  @include container;
+}
+
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $space-md;
+  margin-bottom: $space-lg;
+}
+
+.title {
+  color: $white;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.link {
+  color: $amber;
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-md;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include laptop-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: $radius-md;
+  padding: $space-lg;
+}
+
+.icon {
+  font-size: 26px;
+  margin-bottom: $space-sm;
+}
+
+.cardTitle {
+  color: $white;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.cardText {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  line-height: 1.5;
+}

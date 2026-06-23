@@ -1,0 +1,21 @@
+@use '../../styles/tokens' as *;
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: $text-secondary;
+  padding: $space-md 0;
+}
+
+.list a:hover {
+  color: $navy;
+  text-decoration: underline;
+}
+
+.current {
+  color: $navy-darkest;
+  font-weight: 600;
+}

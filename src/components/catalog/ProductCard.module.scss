@@ -1,0 +1,112 @@
+@use '../../styles/tokens' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: $white;
+  border: 1px solid $gray-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  height: 100%;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: $gray-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: $space-md;
+}
+
+.placeholder {
+  font-size: 36px;
+  opacity: 0.35;
+}
+
+.status {
+  position: absolute;
+  top: $space-sm;
+  left: $space-sm;
+  background: $navy-darkest;
+  color: $white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: $radius-sm;
+}
+
+.body {
+  padding: $space-md;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.sku {
+  font-size: 12px;
+  color: $text-secondary;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  color: $navy-darkest;
+  line-height: 1.35;
+
+  &:hover {
+    color: $navy;
+  }
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.voltage {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: $navy-darkest;
+  background: $gray-light;
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.addBtn {
+  flex-shrink: 0;
+  width: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addBtnActive {
+  background: $navy-darkest;
+  color: $amber;
+}

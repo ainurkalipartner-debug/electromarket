@@ -1,0 +1,49 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include container;
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-md;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include laptop-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  background: $gray-light;
+  border-radius: $radius-md;
+  padding: $space-lg;
+  display: flex;
+  gap: $space-md;
+  align-items: flex-start;
+}
+
+.icon {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 700;
+  color: $navy-darkest;
+  margin-bottom: 4px;
+}
+
+.text {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.5;
+}

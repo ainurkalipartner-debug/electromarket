@@ -1,0 +1,9 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+npm-debug.log*
+
+# generated import report (regenerate via npm run import:excel)
+scripts/import-report.json

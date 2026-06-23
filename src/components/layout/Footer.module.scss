@@ -1,0 +1,87 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  background: $navy-darkest;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: $space-3xl;
+}
+
+.top {
+  @include container;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-xl;
+  padding-top: $space-3xl;
+  padding-bottom: $space-2xl;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include laptop-up {
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  }
+}
+
+.heading {
+  color: $white;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: $space-md;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.list a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+
+  &:hover {
+    color: $amber;
+  }
+}
+
+.brandBlock p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: $space-sm;
+}
+
+.contactItem {
+  font-size: 14px;
+  margin-bottom: $space-sm;
+  display: flex;
+  gap: 8px;
+}
+
+.contactItem a {
+  color: rgba(255, 255, 255, 0.85);
+
+  &:hover {
+    color: $amber;
+  }
+}
+
+.waButton {
+  margin-top: $space-md;
+}
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.bottomInner {
+  @include container;
+  padding-top: $space-md;
+  padding-bottom: $space-md;
+  font-size: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $space-sm;
+}

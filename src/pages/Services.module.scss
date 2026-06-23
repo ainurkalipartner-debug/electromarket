@@ -1,0 +1,66 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.banner {
+  background: linear-gradient(135deg, $navy-darkest, $navy);
+  padding-top: $space-2xl;
+  padding-bottom: $space-2xl;
+}
+
+.bannerInner {
+  @include container;
+}
+
+.bannerTitle {
+  color: $white;
+  font-size: 30px;
+  margin-bottom: $space-sm;
+}
+
+.bannerText {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  max-width: 600px;
+}
+
+.section {
+  @include container;
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-md;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include laptop-up {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  border: 1px solid $gray-border;
+  border-radius: $radius-md;
+  padding: $space-xl;
+}
+
+.icon {
+  font-size: 32px;
+  margin-bottom: $space-md;
+}
+
+.title {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.6;
+}

@@ -1,0 +1,46 @@
+@use '../../styles/tokens' as *;
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: $space-xl 0;
+  flex-wrap: wrap;
+}
+
+.pageBtn {
+  min-width: 36px;
+  height: 36px;
+  border-radius: $radius-sm;
+  border: 1px solid $gray-border;
+  background: $white;
+  color: $navy-darkest;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+
+  &:hover:not(:disabled) {
+    border-color: $navy;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.active {
+  background: $navy-darkest;
+  color: $white;
+  border-color: $navy-darkest;
+}
+
+.ellipsis {
+  padding: 0 4px;
+  color: $text-secondary;
+}
