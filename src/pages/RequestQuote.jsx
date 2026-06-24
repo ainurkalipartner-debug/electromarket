@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSeo } from '../hooks/useSeo';
 import { useQuoteList } from '../context/QuoteListContext';
+import { useTranslation } from '../i18n/LanguageContext';
 import Breadcrumbs from '../components/catalog/Breadcrumbs';
 import RequestQuoteForm from '../components/forms/RequestQuoteForm';
 import ConsultationForm from '../components/forms/ConsultationForm';
@@ -9,18 +10,19 @@ import SpecificationForm from '../components/forms/SpecificationForm';
 import CallbackForm from '../components/forms/CallbackForm';
 import styles from './RequestQuote.module.scss';
 
-const TABS = [
-  { key: 'quote', label: 'Запросить КП' },
-  { key: 'consultation', label: 'Консультация' },
-  { key: 'spec', label: 'Спецификация' },
-  { key: 'callback', label: 'Обратный звонок' },
-];
-
 export default function RequestQuote() {
   const [searchParams] = useSearchParams();
   const initialTab = searchParams.get('tab') === 'spec' ? 'spec' : 'quote';
   const [tab, setTab] = useState(initialTab);
   const { items } = useQuoteList();
+  const { t } = useTranslation();
+
+  const TABS = [
+    { key: 'quote', label: t('requestQuote.tabQuote') },
+    { key: 'consultation', label: t('requestQuote.tabConsultation') },
+    { key: 'spec', label: t('requestQuote.tabSpec') },
+    { key: 'callback', label: t('requestQuote.tabCallback') },
+  ];
 
   const item = searchParams.get('item');
   const defaultEquipment = item || (items.length ? items.map((i) => `${i.name}${i.sku ? ` (${i.sku})` : ''}`).join('\n') : '');
@@ -33,23 +35,26 @@ export default function RequestQuote() {
 
   return (
     <div className={styles.wrap}>
-      <Breadcrumbs items={[{ label: 'Запросить КП' }]} />
+      <Breadcrumbs items={[{ label: t('requestQuote.breadcrumb') }]} />
 
       {tab === 'quote' && items.length > 0 && (
         <div className={styles.quoteListNote}>
-          В вашей заявке {items.length} {items.length === 1 ? 'позиция' : 'позиций'} — список уже добавлен в поле «Список оборудования».
+          {t('requestQuote.quoteListNote', {
+            count: items.length,
+            noun: items.length === 1 ? t('requestQuote.quoteListNounOne') : t('requestQuote.quoteListNounMany'),
+          })}
         </div>
       )}
 
       <div className={styles.tabs}>
-        {TABS.map((t) => (
+        {TABS.map((tabItem) => (
           <button
-            key={t.key}
+            key={tabItem.key}
             type="button"
-            className={`${styles.tab} ${tab === t.key ? styles.tabActive : ''}`}
-            onClick={() => setTab(t.key)}
+            className={`${styles.tab} ${tab === tabItem.key ? styles.tabActive : ''}`}
+            onClick={() => setTab(tabItem.key)}
           >
-            {t.label}
+            {tabItem.label}
           </button>
         ))}
       </div>

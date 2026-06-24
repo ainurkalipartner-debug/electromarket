@@ -46,6 +46,23 @@
   }
 }
 
+.brandHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  margin-bottom: $space-sm;
+}
+
+.logoImg {
+  height: 48px;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+
+  @include laptop-up {
+    height: 56px;
+  }
+}
+
 .brandBlock p {
   font-size: 14px;
   line-height: 1.6;

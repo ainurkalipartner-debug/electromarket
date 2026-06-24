@@ -1,7 +1,10 @@
 import { SITE } from '../../data/siteConfig';
+import { useTranslation } from '../../i18n/LanguageContext';
 import styles from './TopBar.module.scss';
 
 export default function TopBar() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.bar}>
       <div className={styles.inner}>
@@ -18,15 +21,15 @@ export default function TopBar() {
         <div className={styles.right}>
           <span className={styles.item}>
             <span className={styles.icon} aria-hidden="true">🚚</span>
-            Доставка по всему Казахстану
+            {t('topBar.delivery')}
           </span>
           <span className={styles.item}>
             <span className={styles.icon} aria-hidden="true">🛡️</span>
-            Гарантия качества
+            {t('topBar.warranty')}
           </span>
           <span className={styles.item}>
             <span className={styles.icon} aria-hidden="true">⚙️</span>
-            Техническая поддержка
+            {t('topBar.support')}
           </span>
         </div>
       </div>

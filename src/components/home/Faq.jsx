@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { FAQ_ITEMS } from '../../data/faqContent';
+import { useTranslation } from '../../i18n/LanguageContext';
 import SectionHeading from '../ui/SectionHeading';
 import styles from './Faq.module.scss';
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState(0);
+  const { t } = useTranslation();
+  const items = t('faqItems');
 
   return (
     <section className={styles.section}>
-      <SectionHeading title="Вопросы и ответы" />
-      {FAQ_ITEMS.map((item, idx) => {
+      <SectionHeading title={t('home.faq.title')} />
+      {items.map((item, idx) => {
         const isOpen = idx === openIndex;
         return (
           <div key={item.question} className={styles.item}>

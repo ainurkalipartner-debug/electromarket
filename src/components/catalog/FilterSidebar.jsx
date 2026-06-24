@@ -1,4 +1,6 @@
 import { getManufacturer } from '../../data/manufacturers';
+import { useTranslation } from '../../i18n/LanguageContext';
+import { tc } from '../../i18n/translateCatalogText';
 import styles from './FilterSidebar.module.scss';
 
 function buildFacets(products, key, limit) {
@@ -42,6 +44,7 @@ export default function FilterSidebar({
   onSelectSubcategory,
   onReset,
 }) {
+  const { t, lang } = useTranslation();
   const manufacturerFacets = buildFacets(products, 'manufacturerSlug');
   const voltageFacets = buildFacets(products, 'voltageClass');
   const subcategoryFacets = onSelectSubcategory ? buildFacets(products, 'subcategoryName', 15) : [];
@@ -49,23 +52,34 @@ export default function FilterSidebar({
 
   if (!manufacturerFacets.length && !voltageFacets.length && !subcategoryFacets.length) return null;
 
+  function manufacturerLabel(slug) {
+    if (slug === 'involt-production') return t('common.manufacturerOwnProduction');
+    return getManufacturer(slug)?.name || slug;
+  }
+
   return (
     <aside className={styles.sidebar}>
       {hasActiveFilters && (
         <button type="button" className={`${styles.resetBtn} ${styles.reset}`} onClick={onReset}>
-          Сбросить фильтры ✕
+          {t('filters.reset')}
         </button>
       )}
 
-      <FacetGroup title="Раздел" facets={subcategoryFacets} selected={selectedSubcategory} onSelect={onSelectSubcategory} />
       <FacetGroup
-        title="Производитель"
+        title={t('filters.section')}
+        facets={subcategoryFacets}
+        selected={selectedSubcategory}
+        onSelect={onSelectSubcategory}
+        labelFor={(value) => tc(value, lang)}
+      />
+      <FacetGroup
+        title={t('filters.manufacturer')}
         facets={manufacturerFacets}
         selected={selectedManufacturer}
         onSelect={onSelectManufacturer}
-        labelFor={(slug) => getManufacturer(slug)?.name || slug}
+        labelFor={manufacturerLabel}
       />
-      <FacetGroup title="Напряжение" facets={voltageFacets} selected={selectedVoltage} onSelect={onSelectVoltage} />
+      <FacetGroup title={t('filters.voltage')} facets={voltageFacets} selected={selectedVoltage} onSelect={onSelectVoltage} />
     </aside>
   );
 }

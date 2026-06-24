@@ -1,13 +1,16 @@
-import { SERVICES } from '../../data/servicesContent';
+import { useTranslation } from '../../i18n/LanguageContext';
 import SectionHeading from '../ui/SectionHeading';
 import styles from './ServicesTeaser.module.scss';
 
 export default function ServicesTeaser() {
+  const { t } = useTranslation();
+  const services = t('servicesList');
+
   return (
     <section className={styles.section}>
-      <SectionHeading title="Услуги" subtitle="Сопровождаем проект от подбора оборудования до поставки" linkTo="/services" />
+      <SectionHeading title={t('home.servicesTeaser.title')} subtitle={t('home.servicesTeaser.subtitle')} linkTo="/services" />
       <div className={styles.grid}>
-        {SERVICES.map((service) => (
+        {services.map((service) => (
           <div key={service.title} className={styles.card}>
             <div className={styles.icon} aria-hidden="true">{service.icon}</div>
             <div className={styles.title}>{service.title}</div>

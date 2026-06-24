@@ -1,50 +1,52 @@
 import { useLeadForm } from '../../hooks/useLeadForm';
+import { useTranslation } from '../../i18n/LanguageContext';
 import FormShell from './FormShell';
 import FormField from '../ui/FormField';
 
 export default function SpecificationForm() {
   const { fields, setField, submitted, handleSubmit, whatsappHref, mailtoHref } = useLeadForm('spec');
+  const { t } = useTranslation();
 
   return (
     <FormShell
-      title="Отправить спецификацию"
-      description="Загрузите файл спецификации — мы посчитаем стоимость и сроки поставки по позициям."
+      title={t('forms.specTitle')}
+      description={t('forms.specDescription')}
       submitted={submitted}
       whatsappHref={whatsappHref}
       mailtoHref={mailtoHref}
       onSubmit={handleSubmit}
-      submitLabel="Отправить спецификацию"
+      submitLabel={t('forms.specSubmit')}
     >
       <FormField
-        label="Компания"
+        label={t('forms.fieldCompany')}
         name="company"
         required
         value={fields.company || ''}
         onChange={(v) => setField('company', v)}
       />
       <FormField
-        label="Контактное лицо"
+        label={t('forms.fieldContact')}
         name="contact"
         required
         value={fields.contact || ''}
         onChange={(v) => setField('contact', v)}
       />
       <FormField
-        label="Телефон"
+        label={t('forms.fieldPhone')}
         name="phone"
         type="tel"
         required
         value={fields.phone || ''}
         onChange={(v) => setField('phone', v)}
       />
-      <FormField label="Email" name="email" type="email" value={fields.email || ''} onChange={(v) => setField('email', v)} />
+      <FormField label={t('forms.fieldEmail')} name="email" type="email" value={fields.email || ''} onChange={(v) => setField('email', v)} />
       <FormField
-        label="Загрузка файла"
+        label={t('forms.fieldFile')}
         name="file"
         type="file"
         value={fields.fileName || ''}
         onChange={(v) => setField('fileName', v)}
-        hint="Сайт не отправляет файл автоматически — после нажатия кнопки приложите его вручную в чате WhatsApp или письме"
+        hint={t('forms.fieldFileHint')}
       />
     </FormShell>
   );

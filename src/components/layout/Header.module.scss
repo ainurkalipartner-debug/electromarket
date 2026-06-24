@@ -23,10 +23,14 @@
 }
 
 .logo img {
-  height: 40px;
+  height: 56px;
+
+  @include tablet-up {
+    height: 64px;
+  }
 
   @include laptop-up {
-    height: 48px;
+    height: 76px;
   }
 }
 

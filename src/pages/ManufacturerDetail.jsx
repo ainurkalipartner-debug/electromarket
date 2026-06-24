@@ -3,6 +3,7 @@ import { useParams, useSearchParams, Navigate } from 'react-router-dom';
 import { useSeo } from '../hooks/useSeo';
 import { getManufacturer } from '../data/manufacturers';
 import { getSearchIndex } from '../data/products';
+import { useTranslation } from '../i18n/LanguageContext';
 import Breadcrumbs from '../components/catalog/Breadcrumbs';
 import ProductCard from '../components/catalog/ProductCard';
 import Pagination from '../components/catalog/Pagination';
@@ -17,6 +18,7 @@ export default function ManufacturerDetail() {
   const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const page = parseInt(searchParams.get('page') || '1', 10);
+  const { t } = useTranslation();
 
   useEffect(() => {
     let cancelled = false;
@@ -41,18 +43,19 @@ export default function ManufacturerDetail() {
 
   if (!manufacturer) return <Navigate to="/manufacturers" replace />;
 
+  const name = manufacturer.slug === 'involt-production' ? t('common.manufacturerOwnProduction') : manufacturer.name;
   const totalPages = Math.max(1, Math.ceil(products.length / PAGE_SIZE));
   const currentPage = Math.min(Math.max(1, page), totalPages);
   const pageItems = products.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   return (
     <div className={styles.wrap}>
-      <Breadcrumbs items={[{ label: 'Производители', href: '/manufacturers' }, { label: manufacturer.name }]} />
-      <h1 style={{ marginBottom: 8 }}>{manufacturer.name}</h1>
-      <div className={styles.resultCount}>{manufacturer.productCount} позиций в каталоге</div>
+      <Breadcrumbs items={[{ label: t('manufacturers.breadcrumb'), href: '/manufacturers' }, { label: name }]} />
+      <h1 style={{ marginBottom: 8 }}>{name}</h1>
+      <div className={styles.resultCount}>{t('manufacturers.positionsInCatalog', { count: manufacturer.productCount })}</div>
 
       {loading ? (
-        <div className={styles.empty}>Загрузка…</div>
+        <div className={styles.empty}>{t('common.loading')}</div>
       ) : (
         <>
           <div className={styles.grid}>

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../../i18n/LanguageContext';
 import styles from './SectionHeading.module.scss';
 
 export default function SectionHeading({ title, subtitle, linkTo, linkLabel }) {
+  const { t } = useTranslation();
   return (
     <div className={styles.wrap}>
       <div>
@@ -13,7 +15,7 @@ export default function SectionHeading({ title, subtitle, linkTo, linkLabel }) {
       </div>
       {linkTo && (
         <Link to={linkTo} className={styles.link}>
-          {linkLabel || 'Смотреть всё'} →
+          {linkLabel || t('common.seeAll')} →
         </Link>
       )}
     </div>

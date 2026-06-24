@@ -1,0 +1,26 @@
+@use '../../styles/tokens' as *;
+
+.switch {
+  display: flex;
+  align-items: center;
+  border: 1px solid $gray-border;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.option {
+  border: none;
+  background: $white;
+  color: $text-secondary;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.optionActive {
+  background: $navy-darkest;
+  color: $white;
+}

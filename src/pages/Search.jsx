@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSeo } from '../hooks/useSeo';
 import { searchProducts } from '../data/products';
+import { useTranslation } from '../i18n/LanguageContext';
 import SearchBar from '../components/catalog/SearchBar';
 import ProductCard from '../components/catalog/ProductCard';
 import Breadcrumbs from '../components/catalog/Breadcrumbs';
@@ -12,6 +13,7 @@ export default function Search() {
   const q = searchParams.get('q') || '';
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!q.trim()) {
@@ -38,20 +40,20 @@ export default function Search() {
 
   return (
     <div className={styles.wrap}>
-      <Breadcrumbs items={[{ label: 'Поиск' }]} />
+      <Breadcrumbs items={[{ label: t('search.breadcrumb') }]} />
       <div className={styles.searchRow}>
         <SearchBar />
       </div>
 
       {!q.trim() ? (
-        <div className={styles.empty}>Введите запрос — название, артикул, производитель или класс напряжения.</div>
+        <div className={styles.empty}>{t('search.promptEmpty')}</div>
       ) : loading ? (
-        <div className={styles.empty}>Поиск…</div>
+        <div className={styles.empty}>{t('search.searching')}</div>
       ) : results.length === 0 ? (
-        <div className={styles.empty}>По запросу «{q}» ничего не найдено. Попробуйте изменить формулировку или оставьте заявку — поможем найти нужную позицию.</div>
+        <div className={styles.empty}>{t('search.noResults', { q })}</div>
       ) : (
         <>
-          <div className={styles.resultCount}>Найдено {results.length} товаров по запросу «{q}»</div>
+          <div className={styles.resultCount}>{t('search.resultsCount', { count: results.length, q })}</div>
           <div className={styles.grid}>
             {results.map((product) => (
               <ProductCard key={product.id} product={product} />

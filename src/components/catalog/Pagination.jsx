@@ -1,3 +1,4 @@
+import { useTranslation } from '../../i18n/LanguageContext';
 import styles from './Pagination.module.scss';
 
 function getPageList(current, total) {
@@ -6,17 +7,18 @@ function getPageList(current, total) {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }) {
+  const { t } = useTranslation();
   if (totalPages <= 1) return null;
   const pages = getPageList(currentPage, totalPages);
 
   return (
-    <nav className={styles.nav} aria-label="Пагинация">
+    <nav className={styles.nav} aria-label={t('pagination.ariaLabel')}>
       <button
         type="button"
         className={styles.pageBtn}
         disabled={currentPage <= 1}
         onClick={() => onPageChange(currentPage - 1)}
-        aria-label="Предыдущая страница"
+        aria-label={t('pagination.prev')}
       >
         ←
       </button>
@@ -44,7 +46,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
         className={styles.pageBtn}
         disabled={currentPage >= totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        aria-label="Следующая страница"
+        aria-label={t('pagination.next')}
       >
         →
       </button>

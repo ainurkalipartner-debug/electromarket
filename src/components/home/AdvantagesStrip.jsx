@@ -1,19 +1,18 @@
+import { useTranslation } from '../../i18n/LanguageContext';
 import styles from './AdvantagesStrip.module.scss';
 
-const ITEMS = [
-  { icon: '🛡️', title: 'Гарантия качества', text: 'Вся продукция сертифицирована и поставляется с гарантией производителя.' },
-  { icon: '🚚', title: 'Доставка по Казахстану', text: 'Организуем оперативную доставку в любой регион РК.' },
-  { icon: '⚙️', title: 'Техническая поддержка', text: 'Помогаем с подбором оборудования и консультируем по характеристикам.' },
-  { icon: '📋', title: 'Индивидуальные решения', text: 'Подбираем комплектацию и готовим КП под требования вашего проекта.' },
-];
+const ICONS = ['🛡️', '🚚', '⚙️', '📋'];
 
 export default function AdvantagesStrip() {
+  const { t } = useTranslation();
+  const items = t('home.advantages');
+
   return (
     <section className={styles.section}>
       <div className={styles.grid}>
-        {ITEMS.map((item) => (
+        {items.map((item, idx) => (
           <div key={item.title} className={styles.card}>
-            <span className={styles.icon} aria-hidden="true">{item.icon}</span>
+            <span className={styles.icon} aria-hidden="true">{ICONS[idx]}</span>
             <div>
               <div className={styles.title}>{item.title}</div>
               <div className={styles.text}>{item.text}</div>

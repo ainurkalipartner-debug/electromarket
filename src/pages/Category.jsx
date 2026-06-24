@@ -4,6 +4,7 @@ import { useSeo } from '../hooks/useSeo';
 import { useCategoryProducts } from '../hooks/useCategoryProducts';
 import { getCategory } from '../data/categories';
 import { SITE } from '../data/siteConfig';
+import { useTranslation } from '../i18n/LanguageContext';
 import Breadcrumbs from '../components/catalog/Breadcrumbs';
 import FilterSidebar from '../components/catalog/FilterSidebar';
 import ProductCard from '../components/catalog/ProductCard';
@@ -18,6 +19,7 @@ export default function Category() {
   const category = getCategory(categorySlug);
   const { products, loading } = useCategoryProducts(categorySlug);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   const q = searchParams.get('q') || '';
   const manufacturer = searchParams.get('manufacturer');
@@ -53,9 +55,12 @@ export default function Category() {
   const currentPage = Math.min(Math.max(1, page), totalPages);
   const pageItems = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
+  const categoryName = category ? t(`categories.${category.slug}.name`) : null;
+  const categoryDescription = category ? t(`categories.${category.slug}.description`) : null;
+
   useSeo({
-    title: category?.name || 'Категория не найдена',
-    description: category?.description,
+    title: categoryName || 'Категория не найдена',
+    description: categoryDescription,
     canonical: category ? `https://electromarket.kz/catalog/${category.slug}` : undefined,
     jsonLd: category
       ? {
@@ -63,7 +68,7 @@ export default function Category() {
           '@type': 'BreadcrumbList',
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Каталог', item: 'https://electromarket.kz/catalog' },
-            { '@type': 'ListItem', position: 2, name: category.name },
+            { '@type': 'ListItem', position: 2, name: categoryName },
           ],
         }
       : undefined,
@@ -76,24 +81,23 @@ export default function Category() {
       <div className={styles.banner}>
         {category.image && <img className={styles.bannerImage} src={category.image} alt="" aria-hidden="true" />}
         <div className={styles.bannerInner}>
-          <Breadcrumbs items={[{ label: 'Каталог', href: '/catalog' }, { label: category.name }]} />
-          <h1 className={styles.bannerTitle}>{category.name}</h1>
-          <p className={styles.bannerText}>{category.description}</p>
-          {category.productCount > 0 && <span className={styles.bannerCount}>{category.productCount} позиций</span>}
+          <Breadcrumbs variant="dark" items={[{ label: t('category.catalogCrumb'), href: '/catalog' }, { label: categoryName }]} />
+          <h1 className={styles.bannerTitle}>{categoryName}</h1>
+          <p className={styles.bannerText}>{categoryDescription}</p>
+          {category.productCount > 0 && (
+            <span className={styles.bannerCount}>{t('common.positionsCount', { count: category.productCount })}</span>
+          )}
         </div>
       </div>
 
       <div className={styles.body}>
         {category.productCount === 0 ? (
           <div className={styles.empty} style={{ gridColumn: '1 / -1' }}>
-            <div className={styles.emptyTitle}>В текущем прайс-листе эта категория пока пуста</div>
-            <p className={styles.emptyText}>
-              Раздел «{category.name}» появится в каталоге по мере поступления номенклатуры от поставщиков.
-              Оставьте заявку — наши специалисты подберут необходимое оборудование под ваш проект.
-            </p>
+            <div className={styles.emptyTitle}>{t('category.emptyTitle')}</div>
+            <p className={styles.emptyText}>{t('category.emptyText', { name: categoryName })}</p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <button type="button" className="btn btn-amber" onClick={() => navigate('/request-quote')}>
-                Запросить КП
+                {t('common.requestQuote')}
               </button>
               <a
                 className="btn btn-whatsapp"
@@ -101,12 +105,12 @@ export default function Category() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Написать в WhatsApp
+                {t('common.writeWhatsapp')}
               </a>
             </div>
           </div>
         ) : loading ? (
-          <div className={styles.loading} style={{ gridColumn: '1 / -1' }}>Загрузка товаров…</div>
+          <div className={styles.loading} style={{ gridColumn: '1 / -1' }}>{t('category.loadingProducts')}</div>
         ) : (
           <>
             <FilterSidebar
@@ -124,23 +128,23 @@ export default function Category() {
                 <input
                   className={styles.localSearch}
                   type="search"
-                  placeholder="Поиск внутри категории"
+                  placeholder={t('category.searchPlaceholder')}
                   value={q}
                   onChange={(e) => updateParam('q', e.target.value)}
                 />
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                  <span className={styles.resultCount}>{filtered.length} товаров</span>
+                  <span className={styles.resultCount}>{t('category.productsCount', { count: filtered.length })}</span>
                   <select className={styles.sortSelect} value={sort} onChange={(e) => updateParam('sort', e.target.value)}>
-                    <option value="name-asc">По названию А-Я</option>
-                    <option value="name-desc">По названию Я-А</option>
+                    <option value="name-asc">{t('category.sortNameAsc')}</option>
+                    <option value="name-desc">{t('category.sortNameDesc')}</option>
                   </select>
                 </div>
               </div>
 
               {pageItems.length === 0 ? (
                 <div className={styles.empty}>
-                  <div className={styles.emptyTitle}>Ничего не найдено</div>
-                  <p className={styles.emptyText}>Попробуйте изменить условия поиска или сбросить фильтры.</p>
+                  <div className={styles.emptyTitle}>{t('category.noResultsTitle')}</div>
+                  <p className={styles.emptyText}>{t('category.noResultsText')}</p>
                 </div>
               ) : (
                 <div className={styles.grid}>

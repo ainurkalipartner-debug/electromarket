@@ -1,19 +1,15 @@
 import { useSeo } from '../hooks/useSeo';
-import { PROJECT_DIRECTIONS } from '../data/projectDirections';
+import { useTranslation } from '../i18n/LanguageContext';
 import Breadcrumbs from '../components/catalog/Breadcrumbs';
 import SectionHeading from '../components/ui/SectionHeading';
 import CtaBanner from '../components/home/CtaBanner';
 import styles from './Projects.module.scss';
 
-const STEPS = [
-  { title: 'Заявка', text: 'Получаем список оборудования или задачу по проекту.' },
-  { title: 'Подбор', text: 'Подбираем позиции и аналоги под технические требования.' },
-  { title: 'КП', text: 'Готовим коммерческое предложение со сроками поставки.' },
-  { title: 'Поставка', text: 'Организуем доставку по Казахстану.' },
-  { title: 'Сопровождение', text: 'На связи на всех этапах — от заказа до получения на объекте.' },
-];
-
 export default function Projects() {
+  const { t } = useTranslation();
+  const directions = t('projectDirections');
+  const steps = t('projectSteps');
+
   useSeo({
     title: 'Проекты',
     description: 'Направления и подход к работе с проектами по комплектации электрооборудования.',
@@ -24,19 +20,16 @@ export default function Projects() {
     <div>
       <div className={styles.banner}>
         <div className={styles.bannerInner}>
-          <Breadcrumbs items={[{ label: 'Проекты' }]} />
-          <h1 className={styles.bannerTitle}>Проекты</h1>
-          <p className={styles.bannerText}>
-            Помогаем с комплектацией электрооборудования для объектов разного масштаба — от подбора отдельных
-            позиций до сопровождения поставки по полному списку.
-          </p>
+          <Breadcrumbs variant="dark" items={[{ label: t('projects.breadcrumb') }]} />
+          <h1 className={styles.bannerTitle}>{t('projects.bannerTitle')}</h1>
+          <p className={styles.bannerText}>{t('projects.bannerText')}</p>
         </div>
       </div>
 
       <section className={styles.section}>
-        <SectionHeading title="Направления" subtitle="Типы объектов, для которых мы подбираем оборудование" />
+        <SectionHeading title={t('projects.directionsTitle')} subtitle={t('projects.directionsSubtitle')} />
         <div className={styles.grid}>
-          {PROJECT_DIRECTIONS.map((item) => (
+          {directions.map((item) => (
             <div key={item.title} className={styles.card}>
               <div className={styles.icon} aria-hidden="true">{item.icon}</div>
               <div className={styles.cardTitle}>{item.title}</div>
@@ -47,9 +40,9 @@ export default function Projects() {
       </section>
 
       <section className={styles.section}>
-        <SectionHeading title="Как мы работаем с проектом" />
+        <SectionHeading title={t('projects.howWeWork')} />
         <div className={styles.steps}>
-          {STEPS.map((step, idx) => (
+          {steps.map((step, idx) => (
             <div key={step.title} className={styles.step}>
               <div className={styles.stepNumber}>{idx + 1}</div>
               <div className={styles.stepTitle}>{step.title}</div>

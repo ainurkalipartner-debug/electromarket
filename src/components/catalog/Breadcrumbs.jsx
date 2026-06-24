@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../../i18n/LanguageContext';
 import styles from './Breadcrumbs.module.scss';
 
-export default function Breadcrumbs({ items }) {
+export default function Breadcrumbs({ items, variant = 'light' }) {
+  const { t } = useTranslation();
+  const variantClass = variant === 'dark' ? styles.dark : styles.light;
+
   return (
-    <nav className={styles.list} aria-label="Хлебные крошки">
-      <Link to="/">Главная</Link>
+    <nav className={`${styles.list} ${variantClass}`} aria-label={t('breadcrumbs.ariaLabel')}>
+      <Link to="/">{t('common.home')}</Link>
       {items.map((item, idx) => (
         <span key={idx} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span aria-hidden="true">/</span>

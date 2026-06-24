@@ -1,10 +1,13 @@
 import { useSeo } from '../hooks/useSeo';
 import { SITE } from '../data/siteConfig';
+import { useTranslation } from '../i18n/LanguageContext';
 import Breadcrumbs from '../components/catalog/Breadcrumbs';
 import ConsultationForm from '../components/forms/ConsultationForm';
 import styles from './Contacts.module.scss';
 
 export default function Contacts() {
+  const { t } = useTranslation();
+
   useSeo({
     title: 'Контакты',
     description: `Адрес: ${SITE.address}. Телефон: ${SITE.phone}.`,
@@ -20,34 +23,34 @@ export default function Contacts() {
 
   return (
     <div className={styles.wrap}>
-      <Breadcrumbs items={[{ label: 'Контакты' }]} />
-      <h1 className={styles.title}>Контакты</h1>
+      <Breadcrumbs items={[{ label: t('contacts.breadcrumb') }]} />
+      <h1 className={styles.title}>{t('contacts.title')}</h1>
 
       <div className={styles.grid}>
         <div>
           <div className={styles.infoCard}>
             <div className={styles.infoRow}>
               <div>
-                <div className={styles.infoLabel}>Адрес</div>
+                <div className={styles.infoLabel}>{t('contacts.addressLabel')}</div>
                 <div>{SITE.address}</div>
               </div>
             </div>
             <div className={styles.infoRow}>
               <div>
-                <div className={styles.infoLabel}>Телефон</div>
+                <div className={styles.infoLabel}>{t('contacts.phoneLabel')}</div>
                 <a href={SITE.phoneHref}>{SITE.phone}</a>
               </div>
             </div>
             <div className={styles.infoRow}>
               <div>
-                <div className={styles.infoLabel}>Email</div>
+                <div className={styles.infoLabel}>{t('contacts.emailLabel')}</div>
                 <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
               </div>
             </div>
             <div className={styles.infoRow}>
               <div>
-                <div className={styles.infoLabel}>Режим работы</div>
-                <div>{SITE.workHours}</div>
+                <div className={styles.infoLabel}>{t('contacts.hoursLabel')}</div>
+                <div>{t('footer.workHours')}</div>
               </div>
             </div>
             <a
@@ -57,13 +60,13 @@ export default function Contacts() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Написать в WhatsApp
+              {t('common.writeWhatsapp')}
             </a>
           </div>
 
           <iframe
             className={styles.map}
-            title="Карта — ЭЛЕКТРОМАРКЕТ"
+            title={t('contacts.mapTitle')}
             src="https://yandex.ru/map-widget/v1/?text=Атырау%2C%20улица%20Сырым%20Датов%2C%20107"
             loading="lazy"
           />

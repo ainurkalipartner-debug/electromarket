@@ -6,16 +6,37 @@
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: $text-secondary;
+  font-weight: 600;
   padding: $space-md 0;
 }
 
-.list a:hover {
+// Light variant — used on white-background pages.
+.light {
   color: $navy;
+}
+
+.light a:hover {
+  color: $navy-darkest;
   text-decoration: underline;
 }
 
-.current {
+.light .current {
   color: $navy-darkest;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+// Dark variant — used inside dark navy hero/banners (Category, Services,
+// Projects, About, Delivery) where the light-variant colors had poor contrast.
+.dark {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.dark a:hover {
+  color: $amber;
+  text-decoration: underline;
+}
+
+.dark .current {
+  color: $amber;
+  font-weight: 700;
 }

@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { getCategory } from '../../data/categories';
+import { useTranslation } from '../../i18n/LanguageContext';
 import styles from './Hero.module.scss';
 
 export default function Hero() {
+  const { t } = useTranslation();
   const isolators = getCategory('izolyatory-i-vysokovoltnaya-armatura');
   const grounding = getCategory('zazemlenie-i-molniezashchita');
   const automation = getCategory('avtomatika-i-zashchita');
@@ -11,33 +13,30 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.inner}>
         <div className={styles.content}>
-          <span className={styles.eyebrow}>⚡ Электротехническое снабжение</span>
-          <h1 className={styles.title}>Электрооборудование 0,4–10 кВ для промышленных и коммерческих объектов</h1>
-          <p className={styles.subtitle}>
-            Поставка кабельной продукции, КРУ, КСО, трансформаторов, распределительных устройств, щитового
-            оборудования, кабельной арматуры, автоматики, изоляторов и комплектующих по всему Казахстану.
-          </p>
+          <span className={styles.eyebrow}>{t('home.hero.eyebrow')}</span>
+          <h1 className={styles.title}>{t('home.hero.title')}</h1>
+          <p className={styles.subtitle}>{t('home.hero.subtitle')}</p>
           <div className={styles.actions}>
-            <Link to="/catalog" className="btn btn-amber">Перейти в каталог</Link>
-            <Link to="/request-quote" className="btn btn-outline">Получить консультацию</Link>
-            <Link to="/request-quote?tab=spec" className="btn btn-outline">Отправить спецификацию</Link>
+            <Link to="/catalog" className="btn btn-amber">{t('home.hero.goToCatalog')}</Link>
+            <Link to="/request-quote" className="btn btn-outline">{t('home.hero.getConsultation')}</Link>
+            <Link to="/request-quote?tab=spec" className="btn btn-outline">{t('home.hero.sendSpec')}</Link>
           </div>
         </div>
 
         <div className={styles.gallery}>
           {isolators?.image && (
             <div className={styles.tile}>
-              <img src={isolators.image} alt={isolators.name} />
+              <img src={isolators.image} alt={t(`categories.${isolators.slug}.name`)} />
             </div>
           )}
           {grounding?.image && (
             <div className={styles.tile}>
-              <img src={grounding.image} alt={grounding.name} />
+              <img src={grounding.image} alt={t(`categories.${grounding.slug}.name`)} />
             </div>
           )}
           {automation?.image && (
             <div className={`${styles.tile} ${styles.tileWide}`}>
-              <img src={automation.image} alt={automation.name} />
+              <img src={automation.image} alt={t(`categories.${automation.slug}.name`)} />
             </div>
           )}
         </div>
@@ -46,22 +45,22 @@ export default function Hero() {
           <div className={styles.stat}>
             <span className={styles.statIcon} aria-hidden="true">🛡️</span>
             <div>
-              <div className={styles.statTitle}>Надёжность</div>
-              <div className={styles.statText}>Оборудование соответствует ГОСТ и МЭК</div>
+              <div className={styles.statTitle}>{t('home.hero.statReliabilityTitle')}</div>
+              <div className={styles.statText}>{t('home.hero.statReliabilityText')}</div>
             </div>
           </div>
           <div className={styles.stat}>
             <span className={styles.statIcon} aria-hidden="true">✅</span>
             <div>
-              <div className={styles.statTitle}>Качество</div>
-              <div className={styles.statText}>Только проверенные производители</div>
+              <div className={styles.statTitle}>{t('home.hero.statQualityTitle')}</div>
+              <div className={styles.statText}>{t('home.hero.statQualityText')}</div>
             </div>
           </div>
           <div className={styles.stat}>
             <span className={styles.statIcon} aria-hidden="true">⚙️</span>
             <div>
-              <div className={styles.statTitle}>Поддержка</div>
-              <div className={styles.statText}>Техническая поддержка и подбор оборудования</div>
+              <div className={styles.statTitle}>{t('home.hero.statSupportTitle')}</div>
+              <div className={styles.statText}>{t('home.hero.statSupportText')}</div>
             </div>
           </div>
         </div>

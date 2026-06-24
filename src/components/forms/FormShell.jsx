@@ -1,3 +1,4 @@
+import { useTranslation } from '../../i18n/LanguageContext';
 import styles from './FormShell.module.scss';
 
 export default function FormShell({
@@ -7,21 +8,23 @@ export default function FormShell({
   whatsappHref,
   mailtoHref,
   onSubmit,
-  submitLabel = 'Отправить заявку',
+  submitLabel,
   children,
 }) {
+  const { t } = useTranslation();
+
   if (submitted) {
     return (
       <div className={styles.success}>
         <div className={styles.successIcon} aria-hidden="true">✅</div>
-        <h3>Сообщение сформировано</h3>
-        <p>Нажмите кнопку ниже, чтобы отправить уже готовое сообщение нам в WhatsApp или на почту.</p>
+        <h3>{t('forms.successTitle')}</h3>
+        <p>{t('forms.successText')}</p>
         <div className={styles.successActions}>
           <a className="btn btn-whatsapp btn-block" href={whatsappHref} target="_blank" rel="noopener noreferrer">
-            Открыть WhatsApp
+            {t('forms.openWhatsapp')}
           </a>
           <a className="btn btn-outline-navy btn-block" href={mailtoHref}>
-            Написать на email
+            {t('forms.writeEmail')}
           </a>
         </div>
       </div>
@@ -34,7 +37,7 @@ export default function FormShell({
       {description && <p className={styles.description}>{description}</p>}
       {children}
       <button type="submit" className="btn btn-amber btn-block">
-        {submitLabel}
+        {submitLabel || t('forms.submitDefault')}
       </button>
     </form>
   );

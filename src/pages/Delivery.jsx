@@ -1,16 +1,19 @@
 import { useSeo } from '../hooks/useSeo';
+import { useTranslation } from '../i18n/LanguageContext';
 import Breadcrumbs from '../components/catalog/Breadcrumbs';
 import CtaBanner from '../components/home/CtaBanner';
 import styles from './About.module.scss';
 
-const ITEMS = [
-  { icon: '🚚', title: 'Доставка по всему Казахстану', text: 'Организуем доставку оборудования в любой регион республики.' },
-  { icon: '🏢', title: 'Юридические и физические лица', text: 'Работаем как с компаниями, так и с частными заказчиками.' },
-  { icon: '💳', title: 'Безналичный расчёт', text: 'Принимаем оплату по безналичному расчёту с предоставлением документов.' },
-  { icon: '⏱️', title: 'Оперативная логистика', text: 'Сообщаем сроки поставки заранее и сопровождаем груз до получения.' },
-];
+const ICONS = ['🚚', '🏢', '💳', '⏱️'];
 
 export default function Delivery() {
+  const { t } = useTranslation();
+  const items = [1, 2, 3, 4].map((n, idx) => ({
+    icon: ICONS[idx],
+    title: t(`delivery.item${n}Title`),
+    text: t(`delivery.item${n}Text`),
+  }));
+
   useSeo({
     title: 'Доставка и оплата',
     description: 'Доставка по всему Казахстану, работа с юридическими и физическими лицами, безналичный расчёт.',
@@ -21,14 +24,14 @@ export default function Delivery() {
     <div>
       <div className={styles.banner}>
         <div className={styles.bannerInner}>
-          <Breadcrumbs items={[{ label: 'Доставка и оплата' }]} />
-          <h1 className={styles.bannerTitle}>Доставка и оплата</h1>
+          <Breadcrumbs variant="dark" items={[{ label: t('delivery.breadcrumb') }]} />
+          <h1 className={styles.bannerTitle}>{t('delivery.bannerTitle')}</h1>
         </div>
       </div>
 
       <section className={styles.section}>
         <div className={styles.grid} style={{ gridTemplateColumns: '1fr' }}>
-          {ITEMS.map((item) => (
+          {items.map((item) => (
             <div key={item.title} className={styles.item} style={{ alignItems: 'flex-start', fontWeight: 400 }}>
               <span style={{ fontSize: 22 }} aria-hidden="true">{item.icon}</span>
               <div>

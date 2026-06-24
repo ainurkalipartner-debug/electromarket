@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "import:excel": "node scripts/import-excel.mjs"
+    "import:excel": "node scripts/import-excel.mjs",
+    "translate:catalog": "node scripts/translate-catalog.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
