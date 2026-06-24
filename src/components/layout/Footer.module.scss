@@ -54,12 +54,12 @@
 }
 
 .logoImg {
-  height: 48px;
-  border-radius: $radius-sm;
+  height: 44px;
+  width: auto;
   flex-shrink: 0;
 
   @include laptop-up {
-    height: 56px;
+    height: 52px;
   }
 }
 

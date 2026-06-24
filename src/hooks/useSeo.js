@@ -58,7 +58,7 @@ export function useSeo({ title, description, canonical, ogImage, jsonLd }) {
     upsertMeta('property', 'og:title', fullTitle);
     upsertMeta('property', 'og:description', description);
     upsertMeta('property', 'og:type', 'website');
-    upsertMeta('property', 'og:image', ogImage || '/favicon.jpg');
+    upsertMeta('property', 'og:image', ogImage || '/favicon.png');
     if (canonical) {
       upsertMeta('property', 'og:url', canonical);
       upsertLink('canonical', canonical);

@@ -7,7 +7,8 @@ import SearchBar from '../catalog/SearchBar';
 import Modal from '../ui/Modal';
 import CallbackForm from '../forms/CallbackForm';
 import LanguageSwitch from './LanguageSwitch';
-import logo from '../../assets/logo/logo.jpeg';
+import logoFull from '../../assets/logo/logo-full.png';
+import logoIcon from '../../assets/logo/logo-icon.png';
 import styles from './Header.module.scss';
 
 export default function Header() {
@@ -19,7 +20,8 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link to="/" className={styles.logo} aria-label={t('header.logoAria')}>
-          <img src={logo} alt={SITE.name} />
+          <img src={logoIcon} alt={SITE.name} className={styles.logoIcon} width={400} height={400} />
+          <img src={logoFull} alt={SITE.name} className={styles.logoFull} width={960} height={320} />
         </Link>
 
         <div className={styles.search}>
