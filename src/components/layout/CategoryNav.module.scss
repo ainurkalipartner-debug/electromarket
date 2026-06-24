@@ -10,14 +10,9 @@
   display: flex;
   align-items: center;
   gap: $space-lg;
-  overflow-x: auto;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
+// "Каталог товаров" — stays put, never part of the moving track.
 .allLink {
   flex-shrink: 0;
   display: flex;
@@ -29,6 +24,42 @@
   font-size: 14px;
   padding: $space-sm $space-md;
   white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+// Clips the moving track to the remaining width and softly fades its edges
+// so items entering/leaving read as a deliberate ticker, not a hard cut.
+.viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+}
+
+// Two identical copies of the category list placed back to back; animating
+// from translateX(0) to translateX(-50%) — exactly one copy's width — loops
+// seamlessly with no visible seam or jump.
+.track {
+  display: flex;
+  align-items: center;
+  gap: $space-2xl;
+  width: max-content;
+  padding: $space-sm 0;
+  animation: category-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.nav:hover .track,
+.nav:focus-within .track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
 }
 
 .link {
@@ -48,4 +79,13 @@
 .linkActive {
   color: $white;
   border-bottom-color: $amber;
+}
+
+@keyframes category-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
