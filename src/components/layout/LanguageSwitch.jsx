@@ -11,7 +11,7 @@ export default function LanguageSwitch() {
         className={`${styles.option} ${lang === 'ru' ? styles.optionActive : ''}`}
         onClick={() => setLang('ru')}
       >
-        RU
+        РУС
       </button>
       <button
         type="button"
