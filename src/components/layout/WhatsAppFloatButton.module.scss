@@ -4,20 +4,26 @@
   position: fixed;
   bottom: $space-lg;
   right: $space-lg;
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: #25d366;
-  color: $white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
   box-shadow: $shadow-lg;
   z-index: 500;
-  transition: transform 0.15s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-  &:hover {
-    transform: scale(1.06);
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.08);
+    box-shadow: 0 14px 36px rgba(3, 30, 56, 0.28);
   }
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: $white;
 }
