@@ -12,33 +12,35 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
-        <div className={styles.content}>
-          <span className={styles.eyebrow}>{t('home.hero.eyebrow')}</span>
-          <h1 className={styles.title}>{t('home.hero.title')}</h1>
-          <p className={styles.subtitle}>{t('home.hero.subtitle')}</p>
-          <div className={styles.actions}>
-            <Link to="/catalog" className="btn btn-amber">{t('home.hero.goToCatalog')}</Link>
-            <Link to="/request-quote" className="btn btn-outline">{t('home.hero.getConsultation')}</Link>
-            <Link to="/request-quote?tab=spec" className="btn btn-outline">{t('home.hero.sendSpec')}</Link>
+        <div className={styles.top}>
+          <div className={styles.content}>
+            <span className={styles.eyebrow}>{t('home.hero.eyebrow')}</span>
+            <h1 className={styles.title}>{t('home.hero.title')}</h1>
+            <p className={styles.subtitle}>{t('home.hero.subtitle')}</p>
+            <div className={styles.actions}>
+              <Link to="/catalog" className="btn btn-amber">{t('home.hero.goToCatalog')}</Link>
+              <Link to="/request-quote" className="btn btn-outline">{t('home.hero.getConsultation')}</Link>
+              <Link to="/request-quote?tab=spec" className="btn btn-outline">{t('home.hero.sendSpec')}</Link>
+            </div>
           </div>
-        </div>
 
-        <div className={styles.gallery}>
-          {isolators?.image && (
-            <div className={styles.tile}>
-              <img src={isolators.image} alt={t(`categories.${isolators.slug}.name`)} />
-            </div>
-          )}
-          {grounding?.image && (
-            <div className={styles.tile}>
-              <img src={grounding.image} alt={t(`categories.${grounding.slug}.name`)} />
-            </div>
-          )}
-          {automation?.image && (
-            <div className={`${styles.tile} ${styles.tileWide}`}>
-              <img src={automation.image} alt={t(`categories.${automation.slug}.name`)} />
-            </div>
-          )}
+          <div className={styles.gallery}>
+            {isolators?.image && (
+              <div className={styles.tile}>
+                <img src={isolators.image} alt={t(`categories.${isolators.slug}.name`)} />
+              </div>
+            )}
+            {grounding?.image && (
+              <div className={styles.tile}>
+                <img src={grounding.image} alt={t(`categories.${grounding.slug}.name`)} />
+              </div>
+            )}
+            {automation?.image && (
+              <div className={`${styles.tile} ${styles.tileWide}`}>
+                <img src={automation.image} alt={t(`categories.${automation.slug}.name`)} />
+              </div>
+            )}
+          </div>
         </div>
 
         <div className={styles.statsStrip}>

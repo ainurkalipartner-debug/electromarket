@@ -9,22 +9,29 @@
 
 .inner {
   @include container;
-  display: flex;
-  flex-direction: column;
-  gap: $space-xl;
   padding-top: $space-2xl;
   padding-bottom: $space-2xl;
 
   @include laptop-up {
-    flex-direction: row;
-    align-items: center;
     padding-top: $space-3xl;
     padding-bottom: $space-3xl;
   }
 }
 
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+
+  @include laptop-up {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: center;
+    gap: $space-3xl;
+  }
+}
+
 .content {
-  flex: 1.1;
   min-width: 0;
 }
 
@@ -74,14 +81,14 @@
 }
 
 .gallery {
-  flex: 1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: $space-md;
   width: 100%;
 
   @include laptop-up {
-    max-width: 460px;
+    max-width: 420px;
+    margin-left: auto;
   }
 }
 
@@ -111,12 +118,12 @@
   display: none;
 
   @include laptop-up {
-    display: flex;
-    flex-direction: column;
-    gap: $space-md;
-    padding-left: $space-xl;
-    border-left: 1px solid rgba(255, 255, 255, 0.15);
-    flex: 0.55;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $space-xl;
+    margin-top: $space-2xl;
+    padding-top: $space-xl;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
 }
 
@@ -124,6 +131,14 @@
   display: flex;
   gap: $space-sm;
   align-items: flex-start;
+
+  @include laptop-up {
+    padding-right: $space-xl;
+
+    &:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  }
 }
 
 .statIcon {

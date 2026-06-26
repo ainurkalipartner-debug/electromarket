@@ -3,7 +3,6 @@ import { SITE } from '../data/siteConfig';
 import Hero from '../components/home/Hero';
 import AdvantagesStrip from '../components/home/AdvantagesStrip';
 import PopularCategories from '../components/home/PopularCategories';
-import ManufacturersStrip from '../components/home/ManufacturersStrip';
 import ServicesTeaser from '../components/home/ServicesTeaser';
 import ProjectsTeaser from '../components/home/ProjectsTeaser';
 import WhyUs from '../components/home/WhyUs';
@@ -30,7 +29,6 @@ export default function Home() {
       <Hero />
       <AdvantagesStrip />
       <PopularCategories />
-      <ManufacturersStrip />
       <ServicesTeaser />
       <ProjectsTeaser />
       <WhyUs />
