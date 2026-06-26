@@ -3,21 +3,24 @@
 .switch {
   display: flex;
   align-items: center;
-  border: 1px solid $gray-border;
-  border-radius: $radius-sm;
-  overflow: hidden;
+  gap: 2px;
+  background: $gray-light;
+  border-radius: 999px;
+  padding: 3px;
   flex-shrink: 0;
 }
 
 .option {
   border: none;
-  background: $white;
+  background: transparent;
   color: $text-secondary;
   font-size: 12px;
   font-weight: 700;
-  padding: 6px 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
   cursor: pointer;
   line-height: 1;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .optionActive {
